@@ -530,6 +530,7 @@ do --[[ Bullet/TorsoFling Checking ]]--
 			wait(6)
 			BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart"), FakeRig:FindFirstChild("HumanoidRootPart"), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
 		end
+		waitforchartodie()
 	elseif IsBulletEnabled == true and RigType == "R15" then
 		local funnyoffseto = {0, 0}
 		if R15ToR6 == true then
