@@ -526,11 +526,10 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		end
 		BulletPartInfo = {Character:FindFirstChild("Left Arm"), FakeRig:FindFirstChild("Left Arm")}
 	elseif IsBulletEnabled == true and RigType == "R6" and IsPermaDeath == true then
-		local waitforchartodie = coroutine.wrap(function()
+		coroutine.wrap(function()
 			wait(6)
 			BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart"), FakeRig:FindFirstChild("HumanoidRootPart"), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
-		end)
-		waitforchartodie()
+		end)()
 	elseif IsBulletEnabled == true and RigType == "R15" then
 		local funnyoffseto = {0, 0}
 		if R15ToR6 == true then
