@@ -1,0 +1,59 @@
+-- local BytexConvert_HatID = 123456789
+-- local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0) , math.rad(0))
+
+coroutine.wrap(function()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local Character = player.Character
+local RightArm = Character:WaitForChild("Right Arm")
+
+-- Hat/accessory setup
+local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
+local accessory = Character:FindFirstChild(HAT_NAME)
+if not accessory then
+    warn("Could not find accessory: " .. HAT_NAME)
+    return
+end
+
+local handle = accessory:FindFirstChild("Handle")
+
+for _, v in ipairs(handle:GetChildren()) do
+    if v:IsA("Weld") or v:IsA("Motor6D") or v:IsA("WeldConstraint") --[[or v:IsA("Mesh") or v:IsA("SpecialMesh")]] then
+        v:Destroy()
+    end
+end
+
+local grip = Instance.new("Part")
+grip.Name = "AccessoryGrip"
+grip.Size = Vector3.new(0.2, 0.2, 0.2) -- Small size to avoid interference
+grip.Transparency = 1
+grip.CanCollide = false
+grip.Anchored = false
+grip.Parent = Character
+
+local gripWeld = Instance.new("Motor6D")
+gripWeld.Name = "GripWeld"
+gripWeld.Part0 = RightArm
+gripWeld.Part1 = grip
+gripWeld.C0 = BytexConvert_HatCFrame
+gripWeld.Parent = grip
+
+local alignPos = Instance.new("AlignPosition")
+alignPos.Attachment0 = Instance.new("Attachment", handle)
+alignPos.Attachment1 = Instance.new("Attachment", grip)
+alignPos.RigidityEnabled = false
+alignPos.Responsiveness = 200
+alignPos.MaxForce = 100000
+alignPos.Parent = handle
+
+local alignOri = Instance.new("AlignOrientation")
+alignOri.Attachment0 = alignPos.Attachment0
+alignOri.Attachment1 = alignPos.Attachment1
+alignOri.MaxTorque = 100000
+alignOri.Responsiveness = 200
+alignOri.Parent = handle
+
+handle.Parent = workspace
+task.wait()
+handle.Parent = accessory
+end)()
