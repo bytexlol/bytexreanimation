@@ -7,7 +7,6 @@ local BytexConvert.HatCFrame = CFrame.new(0, -1.2, -0.6) * CFrame.Angles(math.ra
 
 ]]--
 
-coroutine.wrap(function()
 local BytexConvert = (getgenv and getgenv()) or shared
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -63,4 +62,3 @@ alignOri.Parent = handle
 handle.Parent = workspace
 task.wait()
 handle.Parent = accessory
-end)()
