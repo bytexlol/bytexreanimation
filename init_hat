@@ -1,14 +1,21 @@
--- local BytexConvert_HatID = 123456789
--- local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0) , math.rad(0))
+--[[
+
+local BytexConvert = (getgenv and getgenv()) or shared
+
+local BytexConvert.HatID = 76734658816459
+local BytexConvert.HatCFrame = CFrame.new(0, -1.2, -0.6) * CFrame.Angles(math.rad(-90), math.rad(180) , 0)
+
+]]--
 
 coroutine.wrap(function()
+local BytexConvert = (getgenv and getgenv()) or shared
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local Character = player.Character
 local RightArm = Character:WaitForChild("Right Arm")
 
 -- Hat/accessory setup
-local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
+local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert.HatID))[1].Name
 local accessory = Character:FindFirstChild(HAT_NAME)
 if not accessory then
     warn("Could not find accessory: " .. HAT_NAME)
@@ -35,7 +42,7 @@ local gripWeld = Instance.new("Motor6D")
 gripWeld.Name = "GripWeld"
 gripWeld.Part0 = RightArm
 gripWeld.Part1 = grip
-gripWeld.C0 = BytexConvert_HatCFrame
+gripWeld.C0 = BytexConvert.HatCFrame
 gripWeld.Parent = grip
 
 local alignPos = Instance.new("AlignPosition")
