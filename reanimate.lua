@@ -529,7 +529,7 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		local waitforchartodie = coroutine.wrap(function()
 			wait(6)
 			BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart"), FakeRig:FindFirstChild("HumanoidRootPart"), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
-		end
+		end)
 		waitforchartodie()
 	elseif IsBulletEnabled == true and RigType == "R15" then
 		local funnyoffseto = {0, 0}
