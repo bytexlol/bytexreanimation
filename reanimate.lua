@@ -66,6 +66,7 @@ local OldVelocityMethod = Config.OldVelocityMethod or false -- Self Explainatory
 local IsTorsoFling = Config.TorsoFling or false -- Torso/Collision Fling
 local IsBulletEnabled = Config.BulletEnabled or false -- Enable Bullet
 local R15FlingPart = Config.R15FlingPart or "LeftUpperArm"
+local R6FlingPart = Config.R6FlingPart or "LeftLeg"
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -520,11 +521,11 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		if not Character:FindFirstChild("Robloxclassicred") then -- [[ Hat Check ]] -- 
 			local FakeHat = TestService:FindFirstChild("GelatekReanimateData"):FindFirstChild("R6FakeHat"):Clone()
 			FakeHat.Parent = Character
-			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild("Right Leg"), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
+			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
 		else
-			BulletHatInfo = {Character:FindFirstChild("Robloxclassicred"), FakeRig:FindFirstChild("Right Leg"), CFrame.Angles(math.rad(90),0,math.rad(90)), Vector3.new(), Vector3.new()}
+			BulletHatInfo = {Character:FindFirstChild("Robloxclassicred"), FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(math.rad(90),0,math.rad(90)), Vector3.new(), Vector3.new()}
 		end
-		BulletPartInfo = {Character:FindFirstChild("Left Arm"), FakeRig:FindFirstChild("Left Arm")}
+		BulletPartInfo = {Character:FindFirstChild(R6FlingPart), FakeRig:FindFirstChild(R6FlingPart)}
 	elseif IsBulletEnabled == true and RigType == "R6" and IsPermaDeath == true then
         BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart"), FakeRig:FindFirstChild("HumanoidRootPart"), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
 	elseif IsBulletEnabled == true and RigType == "R15" then
