@@ -1135,7 +1135,7 @@ do -- Bug Reporting
 	Bindable.OnInvoke = Copy
 	game.StarterGui:SetCore("SendNotification",{
 		Title = "Found A Bug?";
-		Text = "Click copy to get discord invite where you can report a bug! otherwise ignore.";
+		Text = "Click copy to get a discord invite for Gelatek Reanimator";
 		Duration = 10;
 		Callback = Bindable,
 		Button1 = "Copy";
