@@ -8,6 +8,7 @@ local Bytex_R6FlingPart = "Left Leg"
 local Bytex_R15FlingPart = "RightHand"
 local Bytex_GiveHatPrefix = "-gh"
 local Bytex_Permadeath = false
+local Bytex_UseHats = true
 
 function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
 local Global = (getgenv and getgenv()) or shared
@@ -44,36 +45,37 @@ local Global = (getgenv and getgenv()) or shared
                 ["LockBulletOnTorso"] = true
             }
         }
+        if Bytex_UseHats then
+            local Players = game:GetService("Players")
+            local player = Players.LocalPlayer
+            local Character = player.Character
 
-        local Players = game:GetService("Players")
-        local player = Players.LocalPlayer
-        local Character = player.Character
+            function sendMessage(message)
+                if game:GetService("TextChatService") then
+                    game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
+                elseif ChatService then
+                    game:GetService("Chat"):Chat(Character, message)
+                end
+            end
 
-        function sendMessage(message)
-            if game:GetService("TextChatService") then
-                game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
-            elseif ChatService then
-                game:GetService("Chat"):Chat(Character, message)
+            local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
+            local accessory = Character:FindFirstChild(HAT_NAME)
+            if not accessory then
+                gui:Notification{
+                    Title = "Error!",
+                    Text = "You didn't have the hat equipped!, Run script again.",
+                    Duration = 5,
+                }
+                wait()
+                sendMessage("/e "..Bytex_GiveHatPrefix.." "..tostring(BytexConvert_HatID))
+                return
             end
         end
 
-        local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
-        local accessory = Character:FindFirstChild(HAT_NAME)
-        if not accessory then
-            gui:Notification{
-                Title = "Error!",
-                Text = "You didn't have the hat equipped!, Run script again.",
-                Duration = 5,
-            }
-            wait()
-            sendMessage("/e "..Bytex_GiveHatPrefix.." "..tostring(BytexConvert_HatID))
-            return
-        end
-
         loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/reanimate.lua"))()
-
+        
         wait(0.5)
-
+        if Bytex_UseHats then
         local Players = game:GetService("Players")
         local player = Players.LocalPlayer
         local Character = player.Character
@@ -130,6 +132,7 @@ local Global = (getgenv and getgenv()) or shared
             Text = "Player reanimated successfully.",
             Duration = 5,
         }
+        end
 end
 
 function runScript(scr)
@@ -166,6 +169,13 @@ reanim:Toggle{
 	StartingState = false,
 	Description = nil,
 	Callback = function(state) Bytex_Permadeath = state return Bytex_Permadeath end
+}
+
+reanim:Toggle{
+	Name = "Use Hats",
+	StartingState = true,
+	Description = nil,
+	Callback = function(state) Bytex_UseHats = state return Bytex_UseHats end
 }
 
 reanim:dropdown({
