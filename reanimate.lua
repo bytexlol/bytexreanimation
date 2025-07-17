@@ -539,9 +539,9 @@ do --[[ Bullet/TorsoFling Checking ]]--
 			BulletHatInfo = {Character:FindFirstChild("SniperShoulderL"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("LeftUpperArm"), CFrame.new(0, funnyoffseto[1], 0), Vector3.new(0, funnyoffseto[2], 0), Vector3.new()}
 		end
 		if R15ToR6 == true then
-			BulletPartInfo = {Character:FindFirstChild("LeftHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("LeftHand"), CFrame.new(0, 0.4085, 0), Vector3.new(0, -0.4085, 0), Vector3.new()}	
+			BulletPartInfo = {Character:FindFirstChild("RightHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("RightHand"), CFrame.new(0, 0.4085, 0), Vector3.new(0, -0.4085, 0), Vector3.new()}	
 		else
-			BulletPartInfo = {Character:FindFirstChild("LeftHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("LeftHand"), CFrame.new(0, 0, 0), Vector3.new(0, -0, 0), Vector3.new()}	
+			BulletPartInfo = {Character:FindFirstChild("RightHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("RightHand"), CFrame.new(0, 0, 0), Vector3.new(0, -0, 0), Vector3.new()}	
 		end
 	end
 	if IsTorsoFling == true then
