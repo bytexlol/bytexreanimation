@@ -520,9 +520,9 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		if not Character:FindFirstChild("Robloxclassicred") then -- [[ Hat Check ]] -- 
 			local FakeHat = TestService:FindFirstChild("GelatekReanimateData"):FindFirstChild("R6FakeHat"):Clone()
 			FakeHat.Parent = Character
-			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild("Left Arm"), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
+			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild("Right Leg"), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
 		else
-			BulletHatInfo = {Character:FindFirstChild("Robloxclassicred"), FakeRig:FindFirstChild("Left Arm"), CFrame.Angles(0,0,math.rad(90)), Vector3.new(), Vector3.new()}
+			BulletHatInfo = {Character:FindFirstChild("Robloxclassicred"), FakeRig:FindFirstChild("Right Leg"), CFrame.Angles(math.rad(90),0,math.rad(90)), Vector3.new(), Vector3.new()}
 		end
 		BulletPartInfo = {Character:FindFirstChild("Left Arm"), FakeRig:FindFirstChild("Left Arm")}
 	elseif IsBulletEnabled == true and RigType == "R6" and IsPermaDeath == true then
