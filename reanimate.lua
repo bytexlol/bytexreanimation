@@ -523,6 +523,7 @@ do --[[ Bullet/TorsoFling Checking ]]--
 			FakeHat.Parent = Character
 			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
 		else
+			Character:FindFirstChild("Robloxclassicred").Mesh:Destroy()
 			BulletHatInfo = {Character:FindFirstChild("Robloxclassicred"), FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(math.rad(90),0,math.rad(90)), Vector3.new(), Vector3.new()}
 		end
 		BulletPartInfo = {Character:FindFirstChild(R6FlingPart), FakeRig:FindFirstChild(R6FlingPart)}
