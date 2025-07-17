@@ -65,6 +65,7 @@ local OldVelocityMethod = Config.OldVelocityMethod or false -- Self Explainatory
 -- [[ Flinging Methods ]] --
 local IsTorsoFling = Config.TorsoFling or false -- Torso/Collision Fling
 local IsBulletEnabled = Config.BulletEnabled or false -- Enable Bullet
+local R15FlingPart = Config.R15FlingPart or "LeftUpperArm"
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -534,14 +535,14 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		if not Character:FindFirstChild("SniperShoulderL") then -- [[ Hat Check ]] -- 
 			local FakeHat = TestService:FindFirstChild("GelatekReanimateData"):FindFirstChild("R15FakeHat"):Clone()
 			FakeHat.Parent = Character
-			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("LeftUpperArm"), CFrame.new(0, funnyoffseto[1], 0), Vector3.new(0, funnyoffseto[2], 0), Vector3.new()}
+			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild(R15FlingPart), CFrame.new(0, funnyoffseto[1], 0), Vector3.new(0, funnyoffseto[2], 0), Vector3.new()}
 		else
-			BulletHatInfo = {Character:FindFirstChild("SniperShoulderL"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("LeftUpperArm"), CFrame.new(0, funnyoffseto[1], 0), Vector3.new(0, funnyoffseto[2], 0), Vector3.new()}
+			BulletHatInfo = {Character:FindFirstChild("SniperShoulderL"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild(R15FlingPart), CFrame.new(0, funnyoffseto[1], 0), Vector3.new(0, funnyoffseto[2], 0), Vector3.new()}
 		end
 		if R15ToR6 == true then
-			BulletPartInfo = {Character:FindFirstChild("RightHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("RightHand"), CFrame.new(0, 0.4085, 0), Vector3.new(0, -0.4085, 0), Vector3.new()}	
+			BulletPartInfo = {Character:FindFirstChild(R15FlingPart), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild(R15FlingPart), CFrame.new(0, 0.4085, 0), Vector3.new(0, -0.4085, 0), Vector3.new()}	
 		else
-			BulletPartInfo = {Character:FindFirstChild("RightHand"), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild("RightHand"), CFrame.new(0, 0, 0), Vector3.new(0, -0, 0), Vector3.new()}	
+			BulletPartInfo = {Character:FindFirstChild(R15FlingPart), FakeRig:FindFirstChild("Left Arm") or FakeRig:FindFirstChild(R15FlingPart), CFrame.new(0, 0, 0), Vector3.new(0, -0, 0), Vector3.new()}	
 		end
 	end
 	if IsTorsoFling == true then
