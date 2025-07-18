@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/lib.lua"))()
 
-local gui = Library:create{
+local bytexgui = Library:create{
     Theme = Library.Themes.Dark
 }
 
@@ -42,7 +42,7 @@ local Global = (getgenv and getgenv()) or shared
             ["TorsoFling"] = false,
             ["R6FlingPart"] = Bytex_R6FlingPart,
             ["R15FlingPart"] = Bytex_R15FlingPart,
-	    ["R6FakeLimb"] = Bytex_R6FakeLimb,
+	        ["R6FakeLimb"] = Bytex_R6FakeLimb,
             ["BulletEnabled"] = true,
             ["BulletConfig"] = {
                 ["RunAfterReanimate"] = true,
@@ -65,7 +65,7 @@ local Global = (getgenv and getgenv()) or shared
             local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
             local accessory = Character:FindFirstChild(HAT_NAME)
             if not accessory then
-                gui:Notification{
+                bytexgui:Notification{
                     Title = "Error!",
                     Text = "You didn't have the hat equipped!, Run script again.",
                     Duration = 5,
@@ -131,7 +131,7 @@ local Global = (getgenv and getgenv()) or shared
         task.wait()
         handle.Parent = accessory
 
-        gui:Notification{
+        bytexgui:Notification{
             Title = "Success!",
             Text = "Player reanimated successfully.",
             Duration = 5,
@@ -143,12 +143,12 @@ function runScript(scr)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/scripts/"..scr..".lua"))()
 end
 
-local reanim = gui:tab{
+local reanim = bytexgui:tab{
     Icon = "rbxassetid://92920576968733",
     Name = "Reanimation"
 }
 
-local scr = gui:tab{
+local scr = bytexgui:tab{
     Icon = "rbxassetid://4227397352",
     Name = "Scripts"
 }
@@ -216,9 +216,9 @@ reanim:dropdown({
     Callback = function(item) Bytex_R6FlingPart = item return Bytex_R6FlingPart end
 })
 
-local fakelimbtext = reanim:textbox({
+reanim:textbox({
     Name = "R6 Fake Limb Hat ID (Default = 63690008)",
-    Callback = function(item) Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(item))[1].Name fakelimbtext.Name = Bytex_R6FakeLimb return Bytex_R6FakeLimb end
+    Callback = function(item) Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(item))[1].Name return Bytex_R6FakeLimb end
 })
 
 reanim:textbox({
@@ -286,8 +286,8 @@ scr:button({
     end,
 })
 
-gui:Notification{
-    Title = "Welcome!",
+bytexgui:Notification{
+    Title = "Welcome to Bytex!",
     Text = "Scripts and customization converted/made by 2faint. Reanimation made by Gelatek",
     Duration = 5,
 }
@@ -295,7 +295,7 @@ gui:Notification{
 wait(1)
 
 if game.GameId ~= 6016588693 then
-    gui:Prompt{
+    bytexgui:Prompt{
         Followup = false,
         Title = "Warning",
         Text = "This script may not work in this game. Click OK if you want to be teleported into Just a baseplate",
