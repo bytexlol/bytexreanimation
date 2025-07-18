@@ -191,11 +191,11 @@ do -- [[ Checking ]] --
 		game.Loaded:Wait()
 	end
 	if Player.Character.Name == "GelatekReanimate" then
-		Notification("Error!", "Reanimate Is Already Running!", 3)
+		if not bytexgui then Notification("Error!", "Reanimate Is Already Running!", 3) else bytexgui:Notification("Error!", "Reanimate Is Already Running!", 3) end
 		return nil
 	end
 	if Player.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
-		Notification("Error!", "You are currently dead, wait until you will respawn.", 3)
+		if not bytexgui then Notification("Error!", "You are currently dead, wait until you will respawn.", 3) else bytexgui:Notification("Error!", "You are currently dead, wait until you will respawn.", 3) end
 		return nil
 	end
 	if not TestService:FindFirstChild("GelatekReanimateData") then
