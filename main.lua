@@ -5,10 +5,13 @@ local gui = Library:create{
 }
 
 local Bytex_R6FlingPart = "Left Leg"
-local Bytex_R15FlingPart = "RightHand"
+local Bytex_R15FlingPart = "LeftFoot"
+local Bytex_R6FakeLimb = 63690008
 local Bytex_GiveHatPrefix = "-gh"
 local Bytex_Permadeath = false
 local Bytex_UseHats = true
+
+Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex_R6FakeLimb))[1].Name
 
 function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
 local Global = (getgenv and getgenv()) or shared
@@ -39,6 +42,7 @@ local Global = (getgenv and getgenv()) or shared
             ["TorsoFling"] = false,
             ["R6FlingPart"] = Bytex_R6FlingPart,
             ["R15FlingPart"] = Bytex_R15FlingPart,
+	    ["R6FakeLimb"] = Bytex_R6FakeLimb,
             ["BulletEnabled"] = true,
             ["BulletConfig"] = {
                 ["RunAfterReanimate"] = true,
@@ -212,6 +216,11 @@ reanim:dropdown({
     Callback = function(item) Bytex_R6FlingPart = item return Bytex_R6FlingPart end
 })
 
+local fakelimbtext = reanim:textbox({
+    Name = "R6 Fake Limb Hat ID (Default = 63690008)",
+    Callback = function(item) Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(item))[1].Name fakelimbtext.Name = Bytex_R6FakeLimb return Bytex_R6FakeLimb end
+})
+
 reanim:textbox({
     Name = "Give Hat Prefix (Default = -gh)",
     Callback = function(item) Bytex_GiveHatPrefix = item return Bytex_GiveHatPrefix end
@@ -276,3 +285,27 @@ scr:button({
         runScript('shotgun')
     end,
 })
+
+gui:Notification{
+    Title = "Welcome!",
+    Text = "Scripts and customization converted/made by 2faint. Reanimation made by Gelatek",
+    Duration = 5,
+}
+
+wait(1)
+
+if game.GameId ~= 6016588693 then
+    gui:Prompt{
+        Followup = false,
+        Title = "Warning",
+        Text = "This script may not work in this game. Click OK if you want to be teleported into Just a baseplate",
+        Buttons = {
+            ok = function()
+                game:GetService("TeleportService"):Teleport(17574618959, game.Players.LocalPlayer)
+            end,
+            cancel = function()
+                
+            end
+        }
+    }
+end
