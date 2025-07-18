@@ -13,6 +13,14 @@ local Bytex_UseHats = true
 
 Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex_R6FakeLimb))[1].Name
 
+function sendMessage(message)
+    if game:GetService("TextChatService") then
+        game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
+    elseif ChatService then
+        game:GetService("Chat"):Chat(Character, message)
+    end
+end
+
 function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
 local Global = (getgenv and getgenv()) or shared
             Global.GelatekReanimateConfig = {
@@ -53,14 +61,6 @@ local Global = (getgenv and getgenv()) or shared
             local Players = game:GetService("Players")
             local player = Players.LocalPlayer
             local Character = player.Character
-
-            function sendMessage(message)
-                if game:GetService("TextChatService") then
-                    game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
-                elseif ChatService then
-                    game:GetService("Chat"):Chat(Character, message)
-                end
-            end
 
             local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
             local accessory = Character:FindFirstChild(HAT_NAME)
@@ -159,12 +159,14 @@ reanim:button({
     Callback = function()
         player = game.Players.LocalPlayer
         local character = player.Character
-        character:BreakJoints()
-        character:WaitForChild("Humanoid"):Destroy()
-        character:WaitForChild("Head"):Destroy()
-        character:WaitForChild("Torso"):Destroy()
+        hrp = character:WaitForChild("HumanoidRootPart").CFrame
+        sendMessage("/e -rs")
         player.CharacterAdded:Wait()
-        character:WaitForChild("Humanoid"):Destroy()
+        local character = player.Character
+        character:WaitForChild("Humanoid").Health = 0
+        player.CharacterAdded:Wait()
+        local character = player.Character
+        character:WaitForChild("HumanoidRootPart"):MoveTo(hrp.Position)
     end,
 })
 
