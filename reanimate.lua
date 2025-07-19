@@ -529,7 +529,7 @@ do --[[ Bullet/TorsoFling Checking ]]--
 		end
 		BulletPartInfo = {Character:FindFirstChild(R6FlingPart), FakeRig:FindFirstChild(R6FlingPart)}
 	elseif IsBulletEnabled == true and RigType == "R6" and IsPermaDeath == true then
-        BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart"), FakeRig:FindFirstChild("HumanoidRootPart"), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
+        BulletPartInfo = {Character:FindFirstChild("HumanoidRootPart") + Vector3.new(0, -10, 0), FakeRig:FindFirstChild("HumanoidRootPart") + Vector3.new(0, -10, 0), CFrame.new(), Vector3.new(), Vector3.new(), "yes"}
 	elseif IsBulletEnabled == true and RigType == "R15" then
 		local funnyoffseto = {0, 0}
 		if R15ToR6 == true then
