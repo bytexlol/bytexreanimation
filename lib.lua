@@ -90,9 +90,9 @@ local Library = {
 	},
 	WelcomeText = nil,
 	DisplayName = nil,
-	DragSpeed = 0.1,
+	DragSpeed = 0,
 	LockDragging = false,
-	ToggleKey = Enum.KeyCode.Home,
+	ToggleKey = Enum.KeyCode.F1,
 	UrlLabel = nil,
 	Url = nil
 
