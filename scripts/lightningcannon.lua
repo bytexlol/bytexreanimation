@@ -277,7 +277,7 @@ end
 --\\=================================//
 
 local hea = script.GlowyParts:Clone()
-hea.Parent = Character
+hea.Parent = nil
 hea.Name = "hea"
 hea.Anchored = false
 hea.Locked = true
@@ -1329,11 +1329,9 @@ end
 --||	     WEAPON CREATION
 --\\=================================//
 
-local CreatorName = "ExoticCult"
-
 local GUN = script:FindFirstChild("M82A1")
 local GUN = GUN:Clone()
-GUN.Parent = game.ReplicatedStorage
+GUN.Parent = nil
 local GunJoint = CreateWeldOrSnapOrMotor("Weld", GUN.Handle, RightArm, GUN.Handle, CF(.05,-1,-.15)*ANGLES(RAD(-90),RAD(0),RAD(0)), CF(0, 0, 0))
 local Hole = GUN.Hole
 local Holetwo = GUN.Hole2
@@ -1347,21 +1345,13 @@ local BLADEAAAA = Blade.SlashPart
 
 local SDGUN = script:WaitForChild("GUN")
 local GUNA = SDGUN:Clone()
-GUNA.Parent = game.ReplicatedStorage
+GUNA.Parent = nil
 local GunJoint2 = CreateWeldOrSnapOrMotor("Weld", GUNA.Handle, RightArm, GUNA.Handle, CF(.05,-1,-.15)*ANGLES(RAD(-180),RAD(-180),RAD(0)), CF(0, 0, 0))
 
 local ShadedFolder = IT("Model",Character)
 ShadedFolder.Name = "Shaded"
 ShadedFolder.Parent = nil
-for i = 1, 10 do
-	local FACE = CreatePart(3, ShadedFolder, "Fabric", 0, 0+(i-1)/10.2, "Really black", "FaceGradient", VT(1.01,0.65,1.01),false)
-	FACE.Color = C3()
-	Head:FindFirstChildOfClass("SpecialMesh"):Clone().Parent = FACE
-	CreateWeldOrSnapOrMotor("Weld", Head, Head, FACE, CF(0,0.25-(i-1)/40,0), CF(0, 0, 0))
-end
-EYE = CreatePart(3, ShadedFolder, "Neon", 0, 0, "Institutional white", "Eyeball", VT(0.2,0.2,0.2),false)
-MakeForm(EYE,"Ball")
-CreateWeldOrSnapOrMotor("Weld", Head, Head, EYE, CF(0.15,0.23,-0.55), CF(0, 0, 0))
+
 
 local hitb = Instance.new("Part", Character)
 hitb.Anchored = true
@@ -1424,7 +1414,6 @@ end
 --\\=================================//
 
 function attackone()
-	if GUN.Parent == nil then return end
 	ATTACK = true
 	AttackGyro()
 	for i = 0,.5,.05 do
@@ -1437,39 +1426,12 @@ function attackone()
 		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1,0) * CFrame.Angles(math.rad(-15 - 9 * math.cos(sine/54)),math.rad(-80),math.rad(0)) * CFrame.Angles(math.rad(0 - 5 * math.cos(sine/41)),math.rad(0),math.rad(0)),.7/3)
 		GunJoint.C0 = Clerp(GunJoint.C0,CFrame.new(.05,-1,-.15) * CFrame.Angles(math.rad(-106.3-.9*math.cos(sine/12)),math.rad(0),math.rad(0)),1 / 2)
 	end
-	Effect({Time = 25,EffectType = "Ring",Size = Vector3.new(),Size2 = Vector3.new(1,1,1),Transparency = 0,Transparency2 = 1,CFrame = Holetwo.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1, 1, 1),SoundID = 6150717352,SoundPitch = .4,SoundVolume = 10,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-	Effect({Time = 25,EffectType = "Ring",Size = Vector3.new(),Size2 = Vector3.new(1,1,1),Transparency = 0,Transparency2 = 1,CFrame = Holetwo.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-	for i = 0,2 do
-		Effect({Time = math.random(25,50),EffectType = "Wave",Size = Vector3.new(),Size2 = Vector3.new(4,0,4),Transparency = 0,Transparency2 = 1,CFrame = Holetwo.CFrame*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))),MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(0, 0, 0),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 15})
-		Effect({Time = math.random(25,50),EffectType = "Wave",Size = Vector3.new(),Size2 = Vector3.new(4,0,4),Transparency = 0,Transparency2 = 1,CFrame = Holetwo.CFrame*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))),MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 15})
-	end
+
 	local mousehit = Mouse.Hit
 	local DISTANCE = (Holetwo.Position - mousehit.p).Magnitude
-	local killbeam = CreatePart(3,Effects,"Neon",0,0,Color3.new(1,1,1),"Kill Beam",Vector3.new(1,DISTANCE,1))
-	killbeam.CFrame = CFrame.new(Holetwo.Position,mousehit.p) * CFrame.new(0,0,-DISTANCE/2) * CFrame.Angles(math.rad(90),math.rad(0),math.rad(0))
-	MakeForm(killbeam,"Cyl")
-	coroutine.resume(coroutine.create(function()
-		for i = 1,25 do
-			swait()
-			killbeam.Transparency = i/25
-		end
-		killbeam:Destroy()
-	end))
-	for i = 1,4 do
-		coroutine.resume(coroutine.create(function()
-			Lightning(Holetwo.Position,mousehit.p,15,3.5,Color3.new(0, 0, 0),25,0,1,0,true,55)
-		end))
-	end
-	coroutine.resume(coroutine.create(function()
-		Lightning(Holetwo.Position,mousehit.p,15,3.5,Color3.new(1, 1, 1),25,0,1,0,true,55)
-		Effect({Time = 25,EffectType = "Ring",Size = Vector3.new(),Size2 = Vector3.new(3,3,3),Transparency = 0,Transparency2 = 1,CFrame = mousehit,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(0,0,0),SoundID = 6150717352,SoundPitch = .4,SoundVolume = 10,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-		Effect({Time = 25,EffectType = "Ring",Size = Vector3.new(),Size2 = Vector3.new(3,3,3),Transparency = 0,Transparency2 = 1,CFrame = mousehit,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-		for i = 0,2 do
-			Effect({Time = math.random(25,50),EffectType = "Wave",Size = Vector3.new(),Size2 = Vector3.new(5,0,5),Transparency = 0,Transparency2 = 1,CFrame = mousehit*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))),MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(0, 0, 0),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 15})
-			Effect({Time = math.random(25,50),EffectType = "Wave",Size = Vector3.new(),Size2 = Vector3.new(5,0,5),Transparency = 0,Transparency2 = 1,CFrame = mousehit*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))),MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 15})
-		end
-		mdmg(mousehit.p,10)
-	end))
+
+    wait(0.1)
+	
 	for i = 0,.5,.075 do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CFrame.new(0 + .5 * math.cos(sine/50),0,2 - .5 * math.sin(sine/50)) * CFrame.Angles(math.rad(0),math.rad(0),math.rad(30)),.7/3)
@@ -1484,7 +1446,6 @@ function attackone()
 end
 
 function attackone2()
-	if GUN.Parent == nil then return end
 	ATTACK = true
 	AttackGyro()
 	for i = 0,.5,.05 do
@@ -1856,7 +1817,6 @@ function colmo(Col1,Col2)
 end
 ]]
 function SingularityBeam()
-	if GUN.Parent == nil then return end
 	ATTACK = true
 	AttackGyro()
 	for i = 0,0.5,0.05 do
@@ -1936,7 +1896,6 @@ end
 
 
 function attacktwo()
-	if GUN.Parent == nil then return end
 	ATTACK = true
 	AttackGyro()
 	local gBullet = CreatePart(3,Effects,"Neon",0,0,Color3.new(0,0,1),"BullyFuck",Vector3.new())
@@ -2011,9 +1970,7 @@ end
 --\\=================================//
 
 function hedshoot()
-	if GUN.Parent == nil then return end
 	ATTACK = true
-	CreateSound(235097614,RootPart,6,1.5,false)
 	for i = 0,0.5,0.05 do
 		swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CFrame.new(0 + .5 * math.cos(sine/50),0,3 - .5 * math.sin(sine/50)) * CFrame.Angles(math.rad(0),math.rad(0),math.rad(-60)),0.7/3)
@@ -2024,18 +1981,14 @@ function hedshoot()
 		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1,0) * CFrame.Angles(math.rad(-15 - 9 * math.cos(sine/54)),math.rad(-80),math.rad(0)) * CFrame.Angles(math.rad(0 - 5 * math.cos(sine/41)),math.rad(0),math.rad(0)),0.7/3)
 		GunJoint.C0 = Clerp(GunJoint.C0,CFrame.new(0,-.5,0) * CFrame.Angles(math.rad(-90),math.rad(0),math.rad(0)),1/2)
 	end
-	Effect({Time = 25,EffectType = "Box",Size = Vector3.new(2,2,2),Size2 = Vector3.new(5,5,5),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(0, 0, 0),SoundID = 6150717352,SoundPitch = 0.35,SoundVolume = 6,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-	Effect({Time = 25,EffectType = "Box",Size = Vector3.new(2,2,2),Size2 = Vector3.new(5,5,5),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-	Effect({Time = math.random(25,45),EffectType = "Sphere",Size = Vector3.new(2,100,2),Size2 = Vector3.new(6,100,6),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame*CFrame.new(math.random(-1,1),math.random(-1,1),-50)*CFrame.Angles(math.rad(math.random(89,91)),math.rad(math.random(-1,1)),math.rad(math.random(-1,1))),MoveToPos = nil,RotationX = nil,RotationY = nil,RotationZ = nil,Material = "Neon",Color = Color3.new(1, 1, 1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 45})
-	Effect({Time = math.random(25,45),EffectType = "Sphere",Size = Vector3.new(3,100,3),Size2 = Vector3.new(9,100,9),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame*CFrame.new(math.random(-1,1),math.random(-1,1),-50)*CFrame.Angles(math.rad(math.random(89,91)),math.rad(math.random(-1,1)),math.rad(math.random(-1,1))),MoveToPos = nil,RotationX = nil,RotationY = nil,RotationZ = nil,Material = "Neon",Color = Color3.new(0,0,0),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 45})
+	
 	mdmg(RootPart.Position,14)
 	for i = 1,4 do
 		RootPart.CFrame = RootPart.CFrame * CFrame.new(0,0,-25)
 		mdmg(RootPart.Position,14)
-		Lightning(RootPart.CFrame*CFrame.new(math.random(-2.5,2.5),math.random(-5,5),math.random(-15,15)).p,RootPart.CFrame*CFrame.new(math.random(-2.5,2.5),math.random(-5,5),math.random(-15,15)).p,6,25,shade,math.random(30,45),0.5,1.5,0,true,60) Lightning(RootPart.CFrame*CFrame.new(math.random(-2.5,2.5),math.random(-5,5),math.random(-15,15)).p,RootPart.CFrame*CFrame.new(math.random(-2.5,2.5),math.random(-5,5),math.random(-15,15)).p,6,25,Color3.new(0,0,1),math.random(30,45),0.5,1.5,0,true,60)
+		
 	end
-	Effect({Time = 25,EffectType = "Box",Size = Vector3.new(2,2,2),Size2 = Vector3.new(5,5,5),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(0, 0, 0),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
-	Effect({Time = 25,EffectType = "Box",Size = Vector3.new(2,2,2),Size2 = Vector3.new(5,5,5),Transparency = 0,Transparency2 = 1,CFrame = RootPart.CFrame,MoveToPos = nil,RotationX = math.random(-1,1),RotationY = math.random(-1,1),RotationZ = math.random(-1,1),Material = "Neon",Color = Color3.new(1,1,1),SoundID = nil,SoundPitch = nil,SoundVolume = nil,UseBoomerangMath = true,Boomerang = 0,SizeBoomerang = 50})
+	
 	for i = 0,0.5,0.1 do
 		swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CFrame.new(0 + .5 * math.cos(sine/50),0,3 - .5 * math.sin(sine/50)) * CFrame.Angles(math.rad(0),math.rad(0),math.rad(90)),0.7/3)
@@ -2053,8 +2006,6 @@ end
 --||	  ASSIGN THINGS TO KEYS
 --\\=================================//
 
-SendMessage("[EXC V.1]: ","EXC V.1 loaded")
-
 function MouseDown(Mouse)
 	if ATTACK == false then
 		attackone()
@@ -2067,41 +2018,7 @@ end
 
 function KeyDown(Key)
 	KEYHOLD = true
-	if Key == "e" and ATTACK == false then
-		local Size,StudsAway = Vector3.new(2.5,9,2.5),-4
-		for i = 1,50 do
-			local Shard = IT_("Ring",workspace,{Material = Enum.Material.Glass,Reflectance = 3,CFrame = RootPart.CFrame*CFrame.new(math.random(-2,2)/4,-3-Size.Y/2,StudsAway+math.random(-2,2)/4)*CFrame.fromEulerAnglesXYZ(100,math.random(0,180),.4),Anchored = true,CanCollide = false,Size = Size})
-			game:GetService("Debris"):AddItem(Shard,3)
-			game:GetService("TweenService"):Create(Shard,TweenInfo.new(.3),{CFrame = Shard.CFrame*CFrame.new(0,Size.Y,0)}):Play()
-			game:GetService("TweenService"):Create(Shard,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.In,0,false,2),{Transparency = 1}):Play()
-			StudsAway = StudsAway-2
-			Size = Vector3.new(2.5,9,2.5)*(1+i/10)
-			wait()
-		end
-	end
 
-	if Key == "k" and ATTACK == false and mde == 20 then
-		LookUp = true
-	end	
-	if Key == "l" and ATTACK == false and mde == 20 then
-		LookUp = false
-	end
-	if Key == "n" and ATTACK == false and mde == 1 then
-		sick.TimePosition = 0
-		sick.SoundId = "rbxassetid://611191130"
-		SendMessage("[EXC V.1]: ","Secret song!")
-	end
-	if Key == "[" and ATTACK == false then
-		print("yes")
-	end	
-	if Key == "r" and ATTACK == false and info == false then
-		info = true
-	elseif Key == "r" and ATTACK == false and info == true then
-		info = false
-	end
-	if Key == "t" and ATTACK == false then
-		refit()
-	end
 	if Key == "q" and ATTACK == false then
 		RootPart.CFrame = CFrame.new(1,10,1)
 	end
@@ -2110,19 +2027,6 @@ function KeyDown(Key)
 		hedshoot()
 	end
 
-	if Key == "v" and ATTACK == false then
-		attacktwo()
-	end
-
-	if Key == "c" and ATTACK == false then
-		attackone2()
-	end
-
-	if Key == "n" and mde == 27 then
-		SkiddedSendMessage("[EXC V.1]: ","SKID.")
-		wait(1.2)
-		CreateSound(4138167041,Head,10,1,false)
-	end
 
 	if Key == "m" and ATTACK == false and mde == 0 then
 		mde = 1
@@ -3073,7 +2977,7 @@ while true do
 			GUN.Parent = nil
 		elseif mde ~= 19 or mde ~= 20 then
 			Blade.Parent = nil
-			GUN.Parent = Character
+			GUN.Parent = nil
 		end
 	end
 	if mde == 25 then
@@ -4462,4 +4366,3 @@ while true do
 		SK2.Text = "None"
 	end
 end
-
