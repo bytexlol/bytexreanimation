@@ -266,8 +266,8 @@ scr:button({
 scr:button({
     Name = "Trap Rifle",
     Callback = function()
-        local BytexConvert_HatID = 4933294084
-        local BytexConvert_HatCFrame = CFrame.new(0, -1.2, -0.6) * CFrame.Angles(math.rad(-40), math.rad(-90) , 0)
+        local BytexConvert_HatID = 13820315965
+        local BytexConvert_HatCFrame = CFrame.new(0, -1.5, -0.6) * CFrame.Angles(math.rad(-50), math.rad(90) , 0)
         local BytexConvert_HatLimbWeld = "Right Arm"
 
         Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
@@ -290,12 +290,36 @@ scr:button({
 scr:button({
     Name = "Shotgun",
     Callback = function()
-        local BytexConvert_HatID = 76734658816459
-        local BytexConvert_HatCFrame = CFrame.new(0, -1.2, -0.6) * CFrame.Angles(math.rad(-90), math.rad(180) , 0)
+        local BytexConvert_HatID = 17651760939
+        local BytexConvert_HatCFrame = CFrame.new(0, -1.9, -0.4) * CFrame.Angles(math.rad(-33), math.rad(-90) , 0)
         local BytexConvert_HatLimbWeld = "Right Arm"
 
         Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
         runScript('shotgun')
+    end,
+})
+
+scr:button({
+    Name = "Flamethrower",
+    Callback = function()
+        local BytexConvert_HatID = 6201702979
+        local BytexConvert_HatCFrame = CFrame.new(-1.2, -1.8, -0.9) * CFrame.Angles(math.rad(-45), math.rad(-90), 0)
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        runScript('flamethrower')
+    end,
+})
+
+scr:button({
+    Name = "Raygun",
+    Callback = function()
+        local BytexConvert_HatID = 18492888971
+        local BytexConvert_HatCFrame = CFrame.new(0, -1.2, -0.55) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(90))
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        runScript('raygun')
     end,
 })
 
