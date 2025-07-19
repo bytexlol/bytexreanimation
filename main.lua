@@ -1,17 +1,16 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/lib.lua"))()
-
-local bytexgui = Library:create{
-    Theme = Library.Themes.Dark
-}
-
 local Bytex_R6FlingPart = "Left Leg"
 local Bytex_R15FlingPart = "LeftFoot"
 local Bytex_R6FakeLimb = 63690008
 local Bytex_GiveHatPrefix = "-gh"
 local Bytex_Permadeath = false
 local Bytex_UseHats = true
+local Bytex_FlingEnabled = true
 
-Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex_R6FakeLimb))[1].Name
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/lib.lua"))()
+
+local bytexgui = Library:create{
+    Theme = Library.Themes.Dark
+}
 
 function sendMessage(message)
     if game:GetService("TextChatService") then
@@ -20,6 +19,8 @@ function sendMessage(message)
         game:GetService("Chat"):Chat(Character, message)
     end
 end
+
+Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex_R6FakeLimb))[1].Name
 
 function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
 local Global = (getgenv and getgenv()) or shared
@@ -35,9 +36,9 @@ local Global = (getgenv and getgenv()) or shared
             -- [[ Reanimation Settings ]] --
             ["AlignReanimate"] = false,
             ["FullForceAlign"] = false,
-            ["FasterHeartbeat"] = true,
+            ["FasterHeartbeat"] = false,
             ["DynamicalVelocity"] = false,
-            ["DisableTweaks"] = false,
+            ["DisableTweaks"] = true,
             
             -- [[ Optimization ]] --
             ["OptimizeGame"] = false,
@@ -51,12 +52,13 @@ local Global = (getgenv and getgenv()) or shared
             ["R6FlingPart"] = Bytex_R6FlingPart,
             ["R15FlingPart"] = Bytex_R15FlingPart,
 	        ["R6FakeLimb"] = Bytex_R6FakeLimb,
-            ["BulletEnabled"] = true,
+            ["BulletEnabled"] = Bytex_FlingEnabled,
             ["BulletConfig"] = {
                 ["RunAfterReanimate"] = true,
                 ["LockBulletOnTorso"] = true
             }
         }
+        
         if Bytex_UseHats then
             local Players = game:GetService("Players")
             local player = Players.LocalPlayer
@@ -155,7 +157,7 @@ local scr = bytexgui:tab{
 
 reanim:button({
     Name = "Respawn",
-    Desc = "Press twice",
+    Desc = "recommended for just a baseplate",
     Callback = function()
         player = game.Players.LocalPlayer
         local character = player.Character
@@ -172,22 +174,29 @@ reanim:button({
 
 reanim:Toggle{
 	Name = "Permadeath",
-	StartingState = false,
+	StartingState = Bytex_Permadeath,
 	Description = nil,
 	Callback = function(state) Bytex_Permadeath = state return Bytex_Permadeath end
 }
 
 reanim:Toggle{
 	Name = "Use Hats",
-	StartingState = true,
+	StartingState = Bytex_UseHats,
 	Description = nil,
 	Callback = function(state) Bytex_UseHats = state return Bytex_UseHats end
+}
+
+reanim:Toggle{
+	Name = "Fling Enabled",
+	StartingState = Bytex_FlingEnabled,
+	Description = nil,
+	Callback = function(state) Bytex_FlingEnabled = state return Bytex_FlingEnabled end
 }
 
 reanim:dropdown({
     Name = "Fling Part (R15)",
     Description = "Sets the R15 fling part.",
-    StartingText = "RightHand",
+    StartingText = Bytex_R15FlingPart,
     Items = {
         "RightHand",
         "LeftHand",
@@ -208,7 +217,7 @@ reanim:dropdown({
 reanim:dropdown({
     Name = "Fling Part (R6)",
     Description = "Sets the R6 fling part.",
-    StartingText = "Left Leg",
+    StartingText = Bytex_R6FlingPart,
     Items = {
         "Left Leg",
         "Right Leg",
@@ -219,13 +228,15 @@ reanim:dropdown({
 })
 
 reanim:textbox({
-    Name = "R6 Fake Limb Hat ID (Default = 63690008)",
-    Callback = function(item) Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(item))[1].Name return Bytex_R6FakeLimb end
+    Name = "R6 Fake Limb Hat ID",
+    Placeholder = "63690008",
+    Callback = function(item) if item == "" then item = "63690008" end Bytex_R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(item))[1].Name return Bytex_R6FakeLimb end
 })
 
 reanim:textbox({
-    Name = "Give Hat Prefix (Default = -gh)",
-    Callback = function(item) Bytex_GiveHatPrefix = item return Bytex_GiveHatPrefix end
+    Name = "Give Hat Prefix",
+    Placeholder = "-gh",
+    Callback = function(item) if item == "" then item = "-gh" end Bytex_GiveHatPrefix = item return Bytex_GiveHatPrefix end
 })
 
 scr:button({
