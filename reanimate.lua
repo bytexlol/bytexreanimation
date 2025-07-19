@@ -65,9 +65,10 @@ local OldVelocityMethod = Config.OldVelocityMethod or false -- Self Explainatory
 -- [[ Flinging Methods ]] --
 local IsTorsoFling = Config.TorsoFling or false -- Torso/Collision Fling
 local IsBulletEnabled = Config.BulletEnabled or false -- Enable Bullet
-local R15FlingPart = Config.R15FlingPart or "LeftUpperArm"
+local R15FlingPart = Config.R15FlingPart or "LeftFoot"
 local R6FlingPart = Config.R6FlingPart or "LeftLeg"
 local R6FakeLimb = Config.R6FakeLimb or "Pal Hair"
+local FlingPartRestingOffset = Config.FlingPartRestingOffset or 0
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -974,7 +975,7 @@ task.spawn(function()
 						end
 					end
 				else
-					Position.Position = FakeRig["HumanoidRootPart"].Position
+					Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, Bytex_FlingPartRestingOffset, 0)
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
 			end)
