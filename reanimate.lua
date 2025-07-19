@@ -975,7 +975,7 @@ task.spawn(function()
 						end
 					end
 				else
-					Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, Bytex_FlingPartRestingOffset, 0)
+					Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
 			end)
