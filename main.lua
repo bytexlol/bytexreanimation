@@ -317,7 +317,6 @@ if game.GameId ~= 6016588693 then
                 game:GetService("TeleportService"):Teleport(17574618959, game.Players.LocalPlayer)
             end,
             cancel = function()
-                
             end
         }
     }
