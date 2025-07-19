@@ -323,11 +323,25 @@ scr:button({
     end,
 })
 
+scr:button({
+    Name = "Lightning Cannon",
+    Callback = function()
+        local BytexConvert_HatID = 4623059912
+        local BytexConvert_HatCFrame = CFrame.new(0, -1.2, -0.55) * CFrame.Angles(math.rad(-45), math.rad(90), math.rad(0))
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        runScript('lightningcannon')
+    end,
+})
+
 bytexgui:Notification{
     Title = "Welcome to Bytex!",
     Text = "Scripts and customization converted/made by 2faint. Reanimation made by Gelatek",
     Duration = 5,
 }
+
+bytexgui:set_status("version 1.06")
 
 wait(1)
 
