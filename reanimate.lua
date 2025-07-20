@@ -584,7 +584,7 @@ do --[[ Bullet/TorsoFling Checking ]]--
 			Highlight.Transparency = 0.75
 		end
 		BulletPartInfo[1].Name = 'Bullet'
-		BulletPartInfo[1].Transparency = 0.5
+		BulletPartInfo[1].Transparency = 0.2
 		Highlight.Parent = BulletPartInfo[1]
 	end
 end
