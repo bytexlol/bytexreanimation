@@ -1,3 +1,9 @@
+local holymolythisscriptisstillenabledwhatthefrick = Instance.new("Part")
+holymolythisscriptisstillenabledwhatthefrick.Parent = game.Players.LocalPlayer.Character
+holymolythisscriptisstillenabledwhatthefrick.Massless = true
+holymolythisscriptisstillenabledwhatthefrick.CanCollide = false
+holymolythisscriptisstillenabledwhatthefrick.Transparency = 1
+
 Player=game.Players.LocalPlayer
 Character=Player.Character
 Character.Humanoid.Name = "noneofurbusiness"
@@ -416,7 +422,7 @@ end)
 coroutine.wrap(function()
 if firsttime2 then return end
 firsttime2 = true
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 swait(3)
 if shooting then
 if switch1 then
@@ -434,7 +440,7 @@ end)()
 coroutine.wrap(function()
 if firsttime then return end
 firsttime = true
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 if shooting then
 LEFTARMLERP.C0 = LEFTARMLERP.C0:lerp(CFrame.new(1, 1.35, 0.4) * CFrame.Angles(math.rad(-90), math.rad(0 - 10 * math.sin(sine)), math.rad(0)), 0.25)
 RIGHTARMLERP.C0 = RIGHTARMLERP.C0:lerp(CFrame.new(-1, 0.1 + .4 * math.sin(sine), 0.4) * CFrame.Angles(math.rad(-90), math.rad(-60), math.rad(0)), 0.25)
@@ -500,7 +506,7 @@ end)
 
 
 checks1 = coroutine.wrap(function() -------Checks
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 if Root.Velocity.y > 1 then
 position = "Jump"
 elseif Root.Velocity.y < -1 then
@@ -612,7 +618,7 @@ function immortality()
 	end
 end
 coroutine.wrap(function()
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 if hum.Health < .1 then
 deadsound = Instance.new("Sound", Torso)
 deadsound.Volume = 0
@@ -625,7 +631,7 @@ end
 end)()
 
 local anims = coroutine.wrap(function()
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 settime = 0.05
 sine = sine + change
 if position == "Jump" and attacking == false then
