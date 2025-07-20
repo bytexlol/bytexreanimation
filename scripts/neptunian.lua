@@ -5142,8 +5142,10 @@ for i,v in pairs(Model0:GetChildren()) do
                 v.Locked = true
 		v.Anchored = false
                 v.CanCollide = false
+		v.Transparency = 1
 	end
 end
+
 
 if bytexfesettings.usinghats == true then
 
