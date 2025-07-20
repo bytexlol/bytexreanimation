@@ -24,7 +24,8 @@ local Bytex = {
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/lib.lua"))()
 
 local bytexgui = Library:create{
-    Theme = Library.Themes.Dark
+    Theme = Library.Themes.Dark,
+    Size = UDim2.fromOffset(1100, 850),
 }
 
 --[[
