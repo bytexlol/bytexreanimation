@@ -426,7 +426,7 @@ bytexgui:Notification{
     Duration = 5,
 }
 
-bytexgui:set_status("version 1.07")
+bytexgui:set_status("version 1.08")
 
 wait(1)
 
