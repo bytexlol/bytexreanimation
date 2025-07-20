@@ -794,7 +794,7 @@ end
 end)
  
 coroutine.wrap(function()
-while 1 do
+while 1 and game.Players.LocalPlayer.Character.Parent ~= nil do
 swait()
 if doe <= 360 then
 doe = doe + 2
