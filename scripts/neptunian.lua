@@ -1,32 +1,13 @@
 --- Did actually rework heavily away from original neptunian, and the non-rework neptunian. --NoobyGames12
 --- Was supposed to be for the770zone, or VengefulProgram.
+--- converted by 2faint
+
+local fortnite = (getgenv and getgenv()) or shared
+
+bytexfesettings = fortnite.neptunian
 
 loadstring(game:GetObjects("rbxassetid://5425999987")[1].Source)()
 warn("(not converted by mizt, i just needed his loadlibrary thing) (hes a goat tho)")
-
-local BytexConvert_HatID = 4506945409
-local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(60))
-local BytexConvert_GiveHatPrefix = "-gh"
-
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local Character = player.Character
-
-function sendMessage(message)
-    if game:GetService("TextChatService") then
-        game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
-    elseif ChatService then
-        game:GetService("Chat"):Chat(Character, message)
-    end
-end
-
-local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
-local accessory = Character:FindFirstChild(HAT_NAME)
-if not accessory then
-    sendMessage("/e "..BytexConvert_GiveHatPrefix.." "..tostring(BytexConvert_HatID))
-    warn("Bytex - You didn't have the hat equipped!, Run script again.")
-    return
-end
 
 warn'Neptune/Neptunian V'
 warn[[Absolutely.
@@ -5164,6 +5145,9 @@ for i,v in pairs(Model0:GetChildren()) do
 	end
 end
 
+if bytexfesettings.usinghats == true then
+
+local accessory = Character:FindFirstChild(game:GetObjects("rbxassetid://"..tostring(bytexfesettings.bhatid))[1].Name)
 local RightArm = Part1
 
 local handle = accessory:FindFirstChild("Handle")
@@ -5186,7 +5170,7 @@ local gripWeld = Instance.new("Motor6D")
 gripWeld.Name = "GripWeld"
 gripWeld.Part0 = RightArm
 gripWeld.Part1 = grip
-gripWeld.C0 = BytexConvert_HatCFrame
+gripWeld.C0 = bytexfesettings.bcframele
 gripWeld.Parent = grip
 
 local alignPos = Instance.new("AlignPosition")
@@ -5207,6 +5191,7 @@ alignOri.Parent = handle
 handle.Parent = workspace
 task.wait()
 handle.Parent = accessory
+end
 
 
 plr = game:GetService("Players").LocalPlayer
