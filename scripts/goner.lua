@@ -7,6 +7,12 @@ script = game:GetObjects("rbxassetid://4536456687")[1]._ZVN
 Player = game.Players.LocalPlayer
 Mouse = Player:GetMouse()
 
+local holymolythisscriptisstillenabledwhatthefrick = Instance.new("Part")
+holymolythisscriptisstillenabledwhatthefrick.Parent = game.Players.LocalPlayer.Character
+holymolythisscriptisstillenabledwhatthefrick.Massless = true
+holymolythisscriptisstillenabledwhatthefrick.CanCollide = false
+holymolythisscriptisstillenabledwhatthefrick.Transparency = 1
+
 for _,v in next, Player.Character.Humanoid:GetPlayingAnimationTracks() do
 	v:Stop();
 end
@@ -624,7 +630,7 @@ HUM.Health = 3000
 HUM.Name = PLAYER.UserId
 script.Parent = PLAYER.Backpack
 local TWITCH = 0
-while true do
+while holymolythisscriptisstillenabledwhatthefrick do
 	Swait()
 	SINE = SINE + CHANGE
 	if CHARACTER:FindFirstChild("Animate") then
