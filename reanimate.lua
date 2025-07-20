@@ -70,7 +70,8 @@ local R6FlingPart = Config.R6FlingPart or "LeftLeg"
 local R6FakeLimb = Config.R6FakeLimb or "Pal Hair"
 local FlingPartRestingOffset = Config.FlingPartRestingOffset or 0
 local MeleeScript = Config.MeleeScript or false
-local MeleeOffset = Config.MeleeOffset or -2.5
+local MeleeOffsetZ = Config.MeleeOffsetZ or -2.5
+local MeleeOffsetX = Config.MeleeOffsetX or 0
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -979,13 +980,13 @@ task.spawn(function()
                         end
                     else
                         lplrname = game.Players.LocalPlayer.Name
-                        Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(0, 0, MeleeOffset).Position
+                        Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(MeleeOffsetX, 0, MeleeOffsetZ).Position
                     end
 				else
                     if not MeleeScript then
 					    Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
                     else
-                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, MeleeOffset)
+                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(MeleeOffsetX, -20, MeleeOffset)
                     end
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
