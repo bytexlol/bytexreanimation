@@ -1,5 +1,3 @@
-wait(1) -- submerge glitch fix
-
 script = game:GetObjects("rbxassetid://4536456687")[1]._ZVN
 
 --//====================================================\\--
