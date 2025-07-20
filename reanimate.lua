@@ -984,7 +984,7 @@ task.spawn(function()
                     if not MeleeScript then
 					    Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
                     else
-                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, 0)
+                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, -2.5)
                     end
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
