@@ -44,13 +44,13 @@ end
 r6fakelimbplaceholderwoooo = Bytex.R6FakeLimb
 Bytex.R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex.R6FakeLimb))[1].Name
 
-function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, isMeleeScript, MeleeOffsetZ, MeleeOffsetX)
 local Global = (getgenv and getgenv()) or shared
             Global.GelatekReanimateConfig = {
             -- [[ Rig Settings ]] --
             ["AnimationsDisabled"] = false,
             ["R15ToR6"] = true,
-            ["DontBreakHairWelds"] = false,
+            ["DontBreakHairWelds"] = not Bytex.FlingEnabled,
             ["PermanentDeath"] = Bytex.Permadeath,
             ["Headless"] = false,
             ["TeleportBackWhenVoided"] = false,
@@ -76,6 +76,9 @@ local Global = (getgenv and getgenv()) or shared
 	        ["R6FakeLimb"] = Bytex.R6FakeLimb,
             ["FlingPartRestingOffset"] = Bytex.FlingPartRestingOffset,
             ["BulletEnabled"] = Bytex.FlingEnabled,
+            ["MeleeScript"] = isMeleeScript or false,
+            ["MeleeOffsetZ"] = MeleeOffsetZ or -2.5,
+            ["MeleeOffsetX"] = MeleeOffsetX or 0,
             ["BulletConfig"] = {
                 ["RunAfterReanimate"] = true,
                 ["LockBulletOnTorso"] = true
@@ -355,7 +358,7 @@ scr:button({
         local BytexConvert_HatCFrame = CFrame.new(-1.2, -1.8, -0.9) * CFrame.Angles(math.rad(-45), math.rad(-90), 0)
         local BytexConvert_HatLimbWeld = "Right Arm"
 
-        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true, -3.4, 1.2)
         runScript('flamethrower')
     end,
 })
@@ -382,6 +385,19 @@ scr:button({
         Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
 
         runScript('lightningcannon')
+    end,
+})
+
+scr:button({
+    Name = "Minecraft Sword",
+    Callback = function()
+        local BytexConvert_HatID = 76150994705890
+        local BytexConvert_HatCFrame = CFrame.new(0, -0.6, -1.3) * CFrame.Angles(math.rad(135), math.rad(-90), math.rad(0))
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true)
+
+        runScript('minecraftsword')
     end,
 })
 
