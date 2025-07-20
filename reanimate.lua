@@ -70,6 +70,7 @@ local R6FlingPart = Config.R6FlingPart or "LeftLeg"
 local R6FakeLimb = Config.R6FakeLimb or "Pal Hair"
 local FlingPartRestingOffset = Config.FlingPartRestingOffset or 0
 local MeleeScript = Config.MeleeScript or false
+local MeleeOffset = Config.MeleeOffset or -2.5
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
