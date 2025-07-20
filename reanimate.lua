@@ -978,13 +978,13 @@ task.spawn(function()
                         end
                     else
                         lplrname = game.Players.LocalPlayer.Name
-                        Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2.5).Position
+                        Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(0, 0, MeleeOffset).Position
                     end
 				else
                     if not MeleeScript then
 					    Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
                     else
-                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, -2.5)
+                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, MeleeOffset)
                     end
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
