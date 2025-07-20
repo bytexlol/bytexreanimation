@@ -5,7 +5,7 @@
 ]]--
 
 local Bytex = {
-    R6FlingPart = "Left Leg",
+    R6FlingPart = "Left Arm",
     R15FlingPart = "LeftFoot",
     R6FakeLimb = 63690008,
     GiveHatPrefix = "-gh",
@@ -46,7 +46,7 @@ r6fakelimbplaceholderwoooo = Bytex.R6FakeLimb
 Bytex.R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex.R6FakeLimb))[1].Name
 
 function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, isMeleeScript, MeleeOffsetZ, MeleeOffsetX)
-local Global = (getgenv and getgenv()) or shared
+            local Global = (getgenv and getgenv()) or shared
             Global.GelatekReanimateConfig = {
             -- [[ Rig Settings ]] --
             ["AnimationsDisabled"] = false,
@@ -168,7 +168,89 @@ local Global = (getgenv and getgenv()) or shared
         end
 end
 
+function Reanimate2(BytexConvert_HatID, BytexConvert_HatCFrame, isMeleeScript, MeleeOffsetZ, MeleeOffsetX)
+local Global = (getgenv and getgenv()) or shared
+            Global.GelatekReanimateConfig = {
+            -- [[ Rig Settings ]] --
+            ["AnimationsDisabled"] = false,
+            ["R15ToR6"] = true,
+            ["DontBreakHairWelds"] = not Bytex.FlingEnabled,
+            ["PermanentDeath"] = Bytex.Permadeath,
+            ["Headless"] = false,
+            ["TeleportBackWhenVoided"] = false,
+            
+            -- [[ Reanimation Settings ]] --
+            ["AlignReanimate"] = false,
+            ["FullForceAlign"] = false,
+            ["FasterHeartbeat"] = false,
+            ["DynamicalVelocity"] = false,
+            ["DisableTweaks"] = true,
+            
+            -- [[ Optimization ]] --
+            ["OptimizeGame"] = false,
+
+            -- [[ Miscellacious ]] --
+            ["LoadLibrary"] = false,
+            ["DetailedCredits"] = false,
+            
+            -- [[ Flinging Methods ]] --
+            ["TorsoFling"] = false,
+            ["R6FlingPart"] = Bytex.R6FlingPart,
+            ["R15FlingPart"] = Bytex.R15FlingPart,
+	        ["R6FakeLimb"] = Bytex.R6FakeLimb,
+            ["FlingPartRestingOffset"] = Bytex.FlingPartRestingOffset,
+            ["BulletEnabled"] = Bytex.FlingEnabled,
+            ["MeleeScript"] = isMeleeScript or false,
+            ["MeleeOffsetZ"] = MeleeOffsetZ or -2.5,
+            ["MeleeOffsetX"] = MeleeOffsetX or 0,
+            ["BulletConfig"] = {
+                ["RunAfterReanimate"] = true,
+                ["LockBulletOnTorso"] = true
+            }
+        }
+        
+        if Bytex.UseHats then
+            local Players = game:GetService("Players")
+            local player = Players.LocalPlayer
+            local Character = player.Character
+
+            local HAT_NAME = game:GetObjects("rbxassetid://"..tostring(BytexConvert_HatID))[1].Name
+            local accessory = Character:FindFirstChild(HAT_NAME)
+            if not accessory then
+                bytexgui:Notification{
+                    Title = "Error!",
+                    Text = "You didn't have the hat equipped!, Run script again.",
+                    Duration = 5,
+                }
+                wait()
+                sendMessage("/e "..Bytex.GiveHatPrefix.." "..tostring(BytexConvert_HatID))
+                return
+            end
+        end
+
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/reanimate.lua"))()
+        
+        wait(0.5)
+        bytexgui:Notification{
+            Title = "Success!",
+            Text = "Player reanimated successfully.",
+            Duration = 5,
+        }
+end
+
 function runScript(scr)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/scripts/"..scr..".lua"))()
+end
+
+function runScript2(scr, id, cframe)
+    local fortnite = (getgenv and getgenv()) or shared
+
+    fortnite.neptunian = {
+        usinghats = Bytex.UseHats,
+        bhatid = id,
+        bcframele = cframe
+    }
+
     loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/scripts/"..scr..".lua"))()
 end
 
@@ -390,13 +472,25 @@ scr:button({
 })
 
 scr:button({
+    Name = "Neptunian V",
+    Callback = function()
+        local BytexConvert_HatID = 4506945409
+        local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(60))
+
+        Reanimate2(BytexConvert_HatID, BytexConvert_HatCFrame, true)
+
+        runScript2('neptunian', BytexConvert_HatID, BytexConvert_HatCFrame)
+    end,
+})
+
+scr:button({
     Name = "Goner",
     Callback = function()
         local BytexConvert_HatID = 83037592983508
         local BytexConvert_HatCFrame = CFrame.new(0, -1.7, 2.2) * CFrame.Angles(math.rad(-120), math.rad(-90), math.rad(0))
         local BytexConvert_HatLimbWeld = "Right Arm"
 
-        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true)
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true, -3.15)
 
         runScript('goner')
     end,
@@ -427,7 +521,7 @@ bytexgui:Notification{
     Duration = 5,
 }
 
-bytexgui:set_status("version 1.08")
+bytexgui:set_status("version 1.09")
 
 wait(1)
 
@@ -444,4 +538,6 @@ if game.GameId ~= 6016588693 then
             end
         }
     }
+    else
+
 end
