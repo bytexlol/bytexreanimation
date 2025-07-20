@@ -529,7 +529,6 @@ do --[[ Bullet/TorsoFling Checking ]]--
 			BulletHatInfo = {FakeHat, FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(0,0,math.rad(90)), CFrame.new(), Vector3.new(), Vector3.new(0, 0, 90)}
 		else
 			Character:FindFirstChild(R6FakeLimb).Handle.Mesh:Destroy()
-			Character:FindFirstChild(R6FakeLimb).Handle.AccessoryWeld:Destroy()
 			BulletHatInfo = {Character:FindFirstChild(R6FakeLimb), FakeRig:FindFirstChild(R6FlingPart), CFrame.Angles(math.rad(90),0,math.rad(90)), Vector3.new(), Vector3.new()}
 		end
 		BulletPartInfo = {Character:FindFirstChild(R6FlingPart), FakeRig:FindFirstChild(R6FlingPart)}
