@@ -5147,7 +5147,9 @@ end
 
 if bytexfesettings.usinghats == true then
 
-local accessory = Character:FindFirstChild(game:GetObjects("rbxassetid://"..tostring(bytexfesettings.bhatid))[1].Name)
+mewhenhatid = game:GetObjects("rbxassetid://"..tostring(bytexfesettings.bhatid))[1].Name
+	
+local accessory = Character:FindFirstChild(mewhenhatid)
 local RightArm = Part1
 
 local handle = accessory:FindFirstChild("Handle")
