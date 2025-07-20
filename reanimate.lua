@@ -1,3 +1,54 @@
+local Bytex = {
+    R6FlingPart = "Left Leg",
+    R15FlingPart = "LeftFoot",
+    R6FakeLimb = "Pal Hair",
+    GiveHatPrefix = "-gh",
+    Permadeath = false,
+    UseHats = true,
+    FlingEnabled = true,
+    MeleeScript = true,
+    FlingPartRestingOffset = -10
+}
+
+local Global = (getgenv and getgenv()) or shared
+
+Global.GelatekReanimateConfig = {
+            -- [[ Rig Settings ]] --
+            ["AnimationsDisabled"] = false,
+            ["R15ToR6"] = true,
+            ["DontBreakHairWelds"] = false,
+            ["PermanentDeath"] = Bytex.Permadeath,
+            ["Headless"] = false,
+            ["TeleportBackWhenVoided"] = false,
+            
+            -- [[ Reanimation Settings ]] --
+            ["AlignReanimate"] = false,
+            ["FullForceAlign"] = false,
+            ["FasterHeartbeat"] = false,
+            ["DynamicalVelocity"] = false,
+            ["DisableTweaks"] = true,
+            
+            -- [[ Optimization ]] --
+            ["OptimizeGame"] = false,
+
+            -- [[ Miscellacious ]] --
+            ["LoadLibrary"] = false,
+            ["DetailedCredits"] = false,
+            
+            -- [[ Flinging Methods ]] --
+            ["TorsoFling"] = false,
+            ["R6FlingPart"] = Bytex.R6FlingPart,
+            ["R15FlingPart"] = Bytex.R15FlingPart,
+	        ["R6FakeLimb"] = Bytex.R6FakeLimb,
+            ["FlingPartRestingOffset"] = Bytex.FlingPartRestingOffset,
+            ["BulletEnabled"] = Bytex.FlingEnabled,
+            ["MeleeScript"] = Bytex.MeleeScript,
+            ["BulletConfig"] = {
+                ["RunAfterReanimate"] = true,
+                ["LockBulletOnTorso"] = true
+            }
+        }
+
 local Global = (getgenv and getgenv()) or shared
 -- [[ Services ]] --
 local Speed = tick()
@@ -69,6 +120,7 @@ local R15FlingPart = Config.R15FlingPart or "LeftFoot"
 local R6FlingPart = Config.R6FlingPart or "LeftLeg"
 local R6FakeLimb = Config.R6FakeLimb or "Pal Hair"
 local FlingPartRestingOffset = Config.FlingPartRestingOffset or 0
+local MeleeScript = Config.MeleeScript or false
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -953,29 +1005,38 @@ task.spawn(function()
 			local Hue = tick() % 5/5
 			pcall(function()
 				if Held then
-					if LockBulletOnTorso == true then
-						if Mouse.Target:IsA("BasePart") then
-							if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
-								if Mouse.Target.Parent.Name ~= Players.LocalPlayer.Name then
-									local Target = Mouse.Target.Parent:FindFirstChild("Torso") or Mouse.Target.Parent:FindFirstChild("Head") or Mouse.Target.Parent:FindFirstChildWhichIsA("BasePart")
-									Position.Position = Target.Position
-								end
-							elseif Players:GetPlayerFromCharacter(Mouse.Target.Parent.Parent) then
-								if Mouse.Target.Parent.Parent.Name ~= Players.LocalPlayer.Name then
-									local Target = Mouse.Target.Parent.Parent:FindFirstChild("Torso") or Mouse.Target.Parent.Parent:FindFirstChild("Head") or Mouse.Target.Parent.Parent:FindFirstChildWhichIsA("BasePart")
-									Position.Position = Target.Position
-								end
-							else
-								Position.Position = Mouse.Hit.Position
-							end
-						end
-					else
-						if Mouse.Target:IsA("BasePart") then
-							Position.Position = Mouse.Hit.Position
-						end
-					end
+                    if not MeleeScript then
+                        if LockBulletOnTorso == true then
+                            if Mouse.Target:IsA("BasePart") then
+                                if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
+                                    if Mouse.Target.Parent.Name ~= Players.LocalPlayer.Name then
+                                        local Target = Mouse.Target.Parent:FindFirstChild("Torso") or Mouse.Target.Parent:FindFirstChild("Head") or Mouse.Target.Parent:FindFirstChildWhichIsA("BasePart")
+                                        Position.Position = Target.Position
+                                    end
+                                elseif Players:GetPlayerFromCharacter(Mouse.Target.Parent.Parent) then
+                                    if Mouse.Target.Parent.Parent.Name ~= Players.LocalPlayer.Name then
+                                        local Target = Mouse.Target.Parent.Parent:FindFirstChild("Torso") or Mouse.Target.Parent.Parent:FindFirstChild("Head") or Mouse.Target.Parent.Parent:FindFirstChildWhichIsA("BasePart")
+                                        Position.Position = Target.Position
+                                    end
+                                else
+                                    Position.Position = Mouse.Hit.Position
+                                end
+                            end
+                        else
+                            if Mouse.Target:IsA("BasePart") then
+                                Position.Position = Mouse.Hit.Position
+                            end
+                        end
+                    else
+                        lplrname = game.Players.LocalPlayer.Name
+                        Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2.5).Position
+                    end
 				else
-					Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
+                    if not MeleeScript then
+					    Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
+                    else
+                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, -20, 0)
+                    end
 				end
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
 			end)
@@ -1135,13 +1196,13 @@ do -- Bug Reporting
 		Bindable:Destroy()
 	end
 	Bindable.OnInvoke = Copy
-	game.StarterGui:SetCore("SendNotification",{
+	--[[game.StarterGui:SetCore("SendNotification",{
 		Title = "Found A Bug?";
 		Text = "Click copy to get a discord invite for Gelatek Reanimator";
 		Duration = 10;
 		Callback = Bindable,
 		Button1 = "Copy";
-	})
+	})]]
 end
 
 end)
