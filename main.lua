@@ -389,6 +389,19 @@ scr:button({
 })
 
 scr:button({
+    Name = "Goner",
+    Callback = function()
+        local BytexConvert_HatID = 83037592983508
+        local BytexConvert_HatCFrame = CFrame.new(0, -1.7, 2.2) * CFrame.Angles(math.rad(-120), math.rad(-90), math.rad(0))
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true)
+
+        runScript('goner')
+    end,
+})
+
+scr:button({
     Name = "Minecraft Sword",
     Callback = function()
         local BytexConvert_HatID = 76150994705890
