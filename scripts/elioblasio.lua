@@ -1,9 +1,3 @@
-local holymolythisscriptisstillenabledwhatthefrick = Instance.new("Part")
-holymolythisscriptisstillenabledwhatthefrick.Parent = game.Players.LocalPlayer.Character
-holymolythisscriptisstillenabledwhatthefrick.Massless = true
-holymolythisscriptisstillenabledwhatthefrick.CanCollide = false
-holymolythisscriptisstillenabledwhatthefrick.Transparency = 1
-
 Player=game.Players.LocalPlayer
 Character=Player.Character
 Character.Humanoid.Name = "noneofurbusiness"
@@ -195,7 +189,7 @@ mmask.MeshId,mmask.TextureId = 'http://www.roblox.com/asset/?id=12470186','http:
 
 
 coroutine.wrap(function()
-while wait() do
+while wait() and game.Players.LocalPlayer.Character.Parent ~= nil do
 hum.WalkSpeed = ws
 end
 end)()
@@ -347,7 +341,7 @@ attacking = true
 debounce = true
 equip = true
 coroutine.wrap(function()
-while equip do
+while equip and game.Players.LocalPlayer.Character.Parent ~= nil do
 g1.CFrame = g1.CFrame:lerp(CFrame.new(Root.Position,mouse.Hit.p),.1)
 ws = 10
 swait()
@@ -363,7 +357,7 @@ end
 end
 end)()
 coroutine.wrap(function()
-while equip do
+while equip and game.Players.LocalPlayer.Character.Parent ~= nil do
 swait()
 settime = 0.05
 sine = sine + change
@@ -422,7 +416,7 @@ end)
 coroutine.wrap(function()
 if firsttime2 then return end
 firsttime2 = true
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 swait(3)
 if shooting then
 if switch1 then
@@ -440,7 +434,7 @@ end)()
 coroutine.wrap(function()
 if firsttime then return end
 firsttime = true
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 if shooting then
 LEFTARMLERP.C0 = LEFTARMLERP.C0:lerp(CFrame.new(1, 1.35, 0.4) * CFrame.Angles(math.rad(-90), math.rad(0 - 10 * math.sin(sine)), math.rad(0)), 0.25)
 RIGHTARMLERP.C0 = RIGHTARMLERP.C0:lerp(CFrame.new(-1, 0.1 + .4 * math.sin(sine), 0.4) * CFrame.Angles(math.rad(-90), math.rad(-60), math.rad(0)), 0.25)
@@ -506,7 +500,7 @@ end)
 
 
 checks1 = coroutine.wrap(function() -------Checks
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 if Root.Velocity.y > 1 then
 position = "Jump"
 elseif Root.Velocity.y < -1 then
@@ -535,7 +529,7 @@ end
 
 OrgnC0 = Neck.C0
 local movelimbs = coroutine.wrap(function()
-while RunSrv.RenderStepped:wait() do
+while RunSrv.RenderStepped:wait() and game.Players.LocalPlayer.Character.Parent ~= nil do
 TrsoLV = Torso.CFrame.lookVector
 Dist = nil
 Diff = nil
@@ -618,7 +612,7 @@ function immortality()
 	end
 end
 coroutine.wrap(function()
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 if hum.Health < .1 then
 deadsound = Instance.new("Sound", Torso)
 deadsound.Volume = 0
@@ -631,7 +625,7 @@ end
 end)()
 
 local anims = coroutine.wrap(function()
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 settime = 0.05
 sine = sine + change
 if position == "Jump" and attacking == false then
