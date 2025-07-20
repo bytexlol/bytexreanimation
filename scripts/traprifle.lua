@@ -1,9 +1,3 @@
-local holymolythisscriptisstillenabledwhatthefrick = Instance.new("Part")
-holymolythisscriptisstillenabledwhatthefrick.Parent = game.Players.LocalPlayer.Character
-holymolythisscriptisstillenabledwhatthefrick.Massless = true
-holymolythisscriptisstillenabledwhatthefrick.CanCollide = false
-holymolythisscriptisstillenabledwhatthefrick.Transparency = 1
-
 loadstring(game:GetObjects("rbxassetid://5425999987")[1].Source)()
 
 Effects = { }
@@ -809,9 +803,9 @@ doe = 0
 end
 end
 end)()
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 swait()
-while holymolythisscriptisstillenabledwhatthefrick do
+while game.Players.LocalPlayer.Character.Parent ~= nil do
 swait()
 if Head:FindFirstChild("mus")==nil then
 mus = Instance.new("Sound",Head)
