@@ -11,6 +11,7 @@ local Bytex = {
     GiveHatPrefix = "-gh",
     Permadeath = false,
     UseHats = true,
+    ExtraHats = false,
     FlingEnabled = true,
     FlingPartRestingOffset = -10
 }
@@ -25,7 +26,6 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bytex
 
 local bytexgui = Library:create{
     Theme = Library.Themes.Dark,
-    Size = UDim2.fromOffset(1100, 850),
 }
 
 --[[
@@ -45,13 +45,13 @@ end
 r6fakelimbplaceholderwoooo = Bytex.R6FakeLimb
 Bytex.R6FakeLimb = game:GetObjects("rbxassetid://"..tostring(Bytex.R6FakeLimb))[1].Name
 
-function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, isMeleeScript, MeleeOffsetZ, MeleeOffsetX)
+function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, isMeleeScript, MeleeOffsetZ, MeleeOffsetX, ExtraHatIDs)
             local Global = (getgenv and getgenv()) or shared
             Global.GelatekReanimateConfig = {
             -- [[ Rig Settings ]] --
             ["AnimationsDisabled"] = false,
             ["R15ToR6"] = true,
-            ["DontBreakHairWelds"] = not Bytex.FlingEnabled,
+            ["DontBreakHairWelds"] = false,
             ["PermanentDeath"] = Bytex.Permadeath,
             ["Headless"] = false,
             ["TeleportBackWhenVoided"] = false,
@@ -100,7 +100,11 @@ function Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatL
                     Duration = 5,
                 }
                 wait()
-                sendMessage("/e "..Bytex.GiveHatPrefix.." "..tostring(BytexConvert_HatID))
+                if Bytex.ExtraHats and ExtraHatIDs ~= nil then
+                    sendMessage("/e "..Bytex.GiveHatPrefix.." "..tostring(BytexConvert_HatID)..", "..ExtraHatIDs)                    
+                else
+                    sendMessage("/e "..Bytex.GiveHatPrefix.." "..tostring(BytexConvert_HatID))
+                end
                 return
             end
         end
@@ -242,13 +246,18 @@ function runScript(scr)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/scripts/"..scr..".lua"))()
 end
 
-function runScript2(scr, id, cframe)
+function runScript2(scr, id, cframe, id2, cframe2, id3, cframe3)
     local fortnite = (getgenv and getgenv()) or shared
 
     fortnite.neptunian = {
         usinghats = Bytex.UseHats,
         bhatid = id,
-        bcframele = cframe
+        bcframele = cframe,
+        bhatid2 = id2,
+        bcframele2 = cframe2,
+        bhatid3 = id3,
+        bcframele3 = cframe3,
+        
     }
 
     loadstring(game:HttpGet("https://raw.githubusercontent.com/bytexlol/bytexreanimation/refs/heads/main/scripts/"..scr..".lua"))()
@@ -305,6 +314,13 @@ reanim:Toggle{
 	StartingState = Bytex.UseHats,
 	Description = nil,
 	Callback = function(state) Bytex.UseHats = state return Bytex.UseHats end
+}
+
+reanim:Toggle{
+	Name = "Use Extra Hats",
+	StartingState = Bytex.ExtraHats,
+	Description = nil,
+	Callback = function(state) Bytex.ExtraHats = state return Bytex.ExtraHats end
 }
 
 reanim:Toggle{
@@ -393,7 +409,9 @@ scr:button({
         local BytexConvert_HatCFrame = CFrame.new(0, -1.2, -0.6) * CFrame.Angles(math.rad(-40), math.rad(-90) , 0)
         local BytexConvert_HatLimbWeld = "Right Arm"
 
-        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        local Bytex_ExtraHats = "181354245, 14463095"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, false, nil, nil, Bytex_ExtraHats)
         runScript('elioblasio')
     end,
 })
@@ -417,7 +435,9 @@ scr:button({
         local BytexConvert_HatCFrame = CFrame.new(0.4, -1.2, -1) * CFrame.Angles(math.rad(50), math.rad(90) , 0)
         local BytexConvert_HatLimbWeld = "Right Arm"
 
-        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld)
+        local Bytex_ExtraHats = "17115017000, 17688184206, 17688170079, 17688167550"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, false, nil, nil, Bytex_ExtraHats)
         runScript('minigun')
     end,
 })
@@ -474,8 +494,8 @@ scr:button({
 scr:button({
     Name = "Neptunian V",
     Callback = function()
-        local BytexConvert_HatID = 4506945409
-        local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(60))
+        local BytexConvert_HatID = 112934510372081
+        local BytexConvert_HatCFrame = CFrame.new(0, -0.8, 0) * CFrame.Angles(math.rad(-70), math.rad(-90), math.rad(0))
 
         Reanimate2(BytexConvert_HatID, BytexConvert_HatCFrame, true)
 
@@ -486,11 +506,13 @@ scr:button({
 scr:button({
     Name = "Goner",
     Callback = function()
-        local BytexConvert_HatID = 83037592983508
-        local BytexConvert_HatCFrame = CFrame.new(0, -1.7, 2.2) * CFrame.Angles(math.rad(-120), math.rad(-90), math.rad(0))
+        local BytexConvert_HatID = 17835236579
+        local BytexConvert_HatCFrame = CFrame.new(0, -0.5, 1.7) * CFrame.Angles(math.rad(-40), math.rad(-90), math.rad(0))
         local BytexConvert_HatLimbWeld = "Right Arm"
 
-        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true, -3.15)
+        local Bytex_ExtraHats = "17770317484, 17822722698, 17822749561, 17772174303"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true, -3.15, nil, Bytex_ExtraHats)
 
         runScript('goner')
     end,
