@@ -5150,7 +5150,6 @@ end
 if bytexfesettings.usinghats == true then
 
 mewhenhatid = game:GetObjects("rbxassetid://"..tostring(bytexfesettings.bhatid))[1].Name
-print(mewhenhatid)
 
 Character = game.Players.LocalPlayer.Character
 
