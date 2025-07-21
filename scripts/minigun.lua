@@ -2170,7 +2170,7 @@ function whenthemewhen()
 	for i=0, 1, 0.1 / Animation_Speed do
 		Swait()
 				BODYWELD.C0 = CF(0,0.5,0.3) * ANGLES(RAD(0), RAD(90), RAD(0))
-				Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0), RAD(0), RAD(40)), 0.2 / Animation_Speed)
+				----Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0), RAD(0), RAD(40)), 0.2 / Animation_Speed)
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.4, 0) * ANGLES(RAD(-17), RAD(40), RAD(0)) * RIGHTSHOULDERC0, 0.2 / Animation_Speed)
 				RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CF(0, 0.1, 0 + 0.1 * COS(SINE / 35)) * ANGLES(RAD(0), RAD(0), RAD(-40)), 0.2 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-0.3, 0.3, -0.8) * ANGLES(RAD(100), RAD(-70), RAD(30)) * LEFTSHOULDERC0, 0.2 / Animation_Speed)
@@ -2187,7 +2187,7 @@ function whenthemewhen()
 		for i=0, 0.5, 0.1 / Animation_Speed do
 		        Swait()
 				BODYWELD.C0 = CF(0,0.5,0.3) * ANGLES(RAD(0), RAD(90), RAD(0))
-				Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0), RAD(0), RAD(40)), 1 / Animation_Speed)
+				--Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0), RAD(0), RAD(40)), 1 / Animation_Speed)
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.4, 0) * ANGLES(RAD(-17), RAD(40), RAD(0)) * RIGHTSHOULDERC0, 0.5 / Animation_Speed)
 				RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CF(0, 0.1, 0 + 0.1 * COS(SINE / 35)) * ANGLES(RAD(0), RAD(0), RAD(-40)), 0.5 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-0.3, 0.3, -0.8) * ANGLES(RAD(100), RAD(-70), RAD(30)) * LEFTSHOULDERC0, 0.5 / Animation_Speed)
@@ -2409,7 +2409,7 @@ while true do
 			ANIM = "Jump"
 			if ATTACK == false then
 				RootJoint.C0 = Clerp(RootJoint.C0, ROOTC0 * CF(0, 0, 0) * ANGLES(RAD(0), RAD(0), RAD(0)), .5 / Animation_Speed)
-				Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1.1) - 1)) * ANGLES(RAD(-20), RAD(0), RAD(0)), .5 / Animation_Speed)
+				--Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1.1) - 1)) * ANGLES(RAD(-20), RAD(0), RAD(0)), .5 / Animation_Speed)
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.5, 0.2) * ANGLES(RAD(-20), RAD(0), RAD(-15)) * RIGHTSHOULDERC0, .5 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-1.5, 0.5, 0.2) * ANGLES(RAD(-20), RAD(0), RAD(15)) * LEFTSHOULDERC0, .5 / Animation_Speed)
 				RightHip.C0 = Clerp(RightHip.C0, CF(1, -.5, -0.5) * ANGLES(RAD(-15), RAD(80), RAD(0)) * ANGLES(RAD(-4), RAD(0), RAD(0)), .5 / Animation_Speed)
@@ -2419,7 +2419,7 @@ while true do
 			ANIM = 'Fall'
 			if ATTACK == false then
 				RootJoint.C0 = Clerp(RootJoint.C0, ROOTC0 * CF(0, 0, 0) * ANGLES(RAD(15), RAD(0), RAD(0)), .5 / Animation_Speed)
-				Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1.1) - 1)) * ANGLES(RAD(20), RAD(0), RAD(0)), .5 / Animation_Speed)
+				----Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1.1) - 1)) * ANGLES(RAD(20), RAD(0), RAD(0)), .5 / Animation_Speed)
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.5, 0) * ANGLES(RAD(-10), RAD(0), RAD(25)) * RIGHTSHOULDERC0, .5 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-1.5, 0.5, 0) * ANGLES(RAD(-10), RAD(0), RAD(-25)) * LEFTSHOULDERC0, .5 / Animation_Speed)
 				RightHip.C0 = Clerp(RightHip.C0, CF(1, -.5, -0.5) * ANGLES(RAD(-15), RAD(80), RAD(0)) * ANGLES(RAD(-4), RAD(0), RAD(0)), .5 / Animation_Speed)
@@ -2429,7 +2429,7 @@ while true do
 			ANIM = "Idle"
 			if ATTACK == false then
 				BODYWELD.C0 = CF(0,0.5,0.3) * ANGLES(RAD(0), RAD(90), RAD(0))
-				Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0 - 5.5* SIN(SINE / 60)), RAD(10), RAD(40)), 1 / Animation_Speed)
+				----Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0 - 5.5* SIN(SINE / 60)), RAD(10), RAD(40)), 1 / Animation_Speed)
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.4, 0) * ANGLES(RAD(30), RAD(40), RAD(0)) * RIGHTSHOULDERC0, 0.5 / Animation_Speed)
 				RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CF(0, 0.1, 0 + 0.05 * COS(SINE / 60)) * ANGLES(RAD(-10), RAD(10), RAD(-40)), 0.5 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-0.3, 0.3, -0.8) * ANGLES(RAD(150), RAD(-70), RAD(40)) * LEFTSHOULDERC0, 0.5 / Animation_Speed)
@@ -2447,7 +2447,7 @@ while true do
 		        local LEFTHIPSECOND = CF(-LOOKVEC/10 * COS(SINE / 18),0,0)*ANGLES(SIN(RIGHTVEC/5) * COS(SINE / 18),0,SIN(-LOOKVEC/2) * COS(SINE / 18))
 				BODYWELD.C0 = CF(0,0.5,0.3) * ANGLES(RAD(0), RAD(90), RAD(0))
 				RightShoulder.C0 = Clerp(RightShoulder.C0, CF(1.5, 0.4, 0) * ANGLES(RAD(30), RAD(40), RAD(0)) * RIGHTSHOULDERC0, 0.5 / Animation_Speed)
-	 			Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0 - 2* SIN(SINE / 10)), RAD(0), RAD(40)), 0.8 / Animation_Speed)
+	 			----Neck.C0 = Clerp(Neck.C0, NECKC0 * CF(0, 0, 0 + ((1) - 1)) * ANGLES(RAD(0 - 2* SIN(SINE / 10)), RAD(0), RAD(40)), 0.8 / Animation_Speed)
 				LeftShoulder.C0 = Clerp(LeftShoulder.C0, CF(-0.3, 0.3, -0.8) * ANGLES(RAD(150), RAD(-70), RAD(40)) * LEFTSHOULDERC0, 0.5 / Animation_Speed)
 				RootJoint.C0 = Clerp(RootJoint.C0,ROOTC0 * CF(0, 0.1 , -0.185 + 0.055 * COS(SINE / 10) + -SIN(SINE / 10) / 8) * ANGLES(RAD((LOOKVEC  - LOOKVEC/5  * COS(SINE / 10))*10), RAD((-RIGHTVEC - -RIGHTVEC/5  * COS(SINE / 10))*5) , RAD(-40)), 0.8 / Animation_Speed)
 				RightHip.C0 = Clerp(RightHip.C0, CF(1, -1+ 0.2 * SIN(SINE / 18), -0.5)* ANGLES(RAD(0),RAD(120),RAD(0))*RIGHTHIPSECOND*ANGLES(RAD(0),RAD(0),RAD(0 - 5 * COS(SINE / 18))), 0.8 / Animation_Speed)
