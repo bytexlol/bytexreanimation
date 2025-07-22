@@ -1005,27 +1005,28 @@ task.spawn(function()
 				
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
 				if HeldZ and CustomFling == "Cop" then
-                        if LockBulletOnTorso == true then
-                            if Mouse.Target:IsA("BasePart") then
-                                if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
-                                    if Mouse.Target.Parent.Name ~= Players.LocalPlayer.Name then
-                                        local Target = Mouse.Target.Parent:FindFirstChild("Torso") or Mouse.Target.Parent:FindFirstChild("Head") or Mouse.Target.Parent:FindFirstChildWhichIsA("BasePart")
-                                        Position.Position = Target.Position
-                                    end
-                                elseif Players:GetPlayerFromCharacter(Mouse.Target.Parent.Parent) then
-                                    if Mouse.Target.Parent.Parent.Name ~= Players.LocalPlayer.Name then
-                                        local Target = Mouse.Target.Parent.Parent:FindFirstChild("Torso") or Mouse.Target.Parent.Parent:FindFirstChild("Head") or Mouse.Target.Parent.Parent:FindFirstChildWhichIsA("BasePart")
-                                        Position.Position = Target.Position
-                                    end
-                                else
-                                    Position.Position = Mouse.Hit.Position
-                                end
-                            end
-                        else
-                            if Mouse.Target:IsA("BasePart") then
-                                Position.Position = Mouse.Hit.Position
-                            end
-                        end
+		                        if LockBulletOnTorso == true then
+		                            if Mouse.Target:IsA("BasePart") then
+		                                if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
+		                                    if Mouse.Target.Parent.Name ~= Players.LocalPlayer.Name then
+		                                        local Target = Mouse.Target.Parent:FindFirstChild("Torso") or Mouse.Target.Parent:FindFirstChild("Head") or Mouse.Target.Parent:FindFirstChildWhichIsA("BasePart")
+		                                        Position.Position = Target.Position
+		                                    end
+		                                elseif Players:GetPlayerFromCharacter(Mouse.Target.Parent.Parent) then
+		                                    if Mouse.Target.Parent.Parent.Name ~= Players.LocalPlayer.Name then
+		                                        local Target = Mouse.Target.Parent.Parent:FindFirstChild("Torso") or Mouse.Target.Parent.Parent:FindFirstChild("Head") or Mouse.Target.Parent.Parent:FindFirstChildWhichIsA("BasePart")
+		                                        Position.Position = Target.Position
+		                                    end
+		                                else
+		                                    Position.Position = Mouse.Hit.Position
+		                                end
+		                            end
+		                        else
+		                            if Mouse.Target:IsA("BasePart") then
+		                                Position.Position = Mouse.Hit.Position
+		                            end
+		                        end
+				end
 			end)
 		end))
 	end
