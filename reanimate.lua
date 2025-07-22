@@ -999,7 +999,7 @@ task.spawn(function()
                     if not MeleeScript then
 			Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
                     else
-                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(MeleeOffsetX, -20, MeleeOffset)
+                        Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(MeleeOffsetX, -20, MeleeOffsetZ)
                     end
 				end
 				
@@ -1026,6 +1026,8 @@ task.spawn(function()
 		                                Position.Position = Mouse.Hit.Position
 		                            end
 		                        end
+				else
+					Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(MeleeOffsetX, -20, MeleeOffsetZ)
 				end
 			end)
 		end))
