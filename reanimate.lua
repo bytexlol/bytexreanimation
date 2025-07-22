@@ -970,7 +970,7 @@ task.spawn(function()
 			local Hue = tick() % 5/5
 			pcall(function()
 				if Held or (HeldZ and CustomFling == "Cop") then
-                    if not MeleeScript then
+                    if not MeleeScript and not HeldZ and CustomFling ~= "Cop" then
                         if LockBulletOnTorso == true then
                             if Mouse.Target:IsA("BasePart") then
                                 if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
