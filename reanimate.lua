@@ -72,6 +72,7 @@ local FlingPartRestingOffset = Config.FlingPartRestingOffset or 0
 local MeleeScript = Config.MeleeScript or false
 local MeleeOffsetZ = Config.MeleeOffsetZ or -2.5
 local MeleeOffsetX = Config.MeleeOffsetX or 0
+local CustomFling = Config.CustomFling or nil
 local BulletConfig = Config.BulletConfig or {}
 local BulletAfterReanim = BulletConfig.RunAfterReanimate or false -- Run After Reanimate
 local LockBulletOnTorso = BulletConfig.LockBulletOnTorso or false -- Lock Bullet On Torso
@@ -914,6 +915,7 @@ task.spawn(function()
 		task.wait(2.5)
 		Global.PartDisconnected = true
 		local Held = false
+		local HeldZ = false
 		local Players = game:GetService("Players")
 		local Bullet = Character:FindFirstChild("Bullet")
 		local Highlight = FakeRig:FindFirstChild("FlingerHighlighter")
@@ -941,6 +943,18 @@ task.spawn(function()
 		table.insert(Global.TableOfEvents, Mouse.Button1Up:Connect(function()
 			Held = false
 		end))
+		table.insert(Global.TableOfEvents, Mouse.KeyDown:Connect(function(k)
+			k = k:lower()
+			if k == "z" then
+			HeldZ = true
+			end
+		end))
+		table.insert(Global.TableOfEvents, Mouse.KeyUp:Connect(function(k)
+			k = k:lower()
+			if k == "z" then
+			HeldZ = true
+			end
+		end))
 		
 		Power.Parent = Bullet
 		Position.Parent = Bullet
@@ -955,7 +969,7 @@ task.spawn(function()
 		table.insert(Global.TableOfEvents, game:GetService("RunService").Heartbeat:Connect(function()
 			local Hue = tick() % 5/5
 			pcall(function()
-				if Held then
+				if Held or (HeldZ and CustomFling == "Cop") then
                     if not MeleeScript then
                         if LockBulletOnTorso == true then
                             if Mouse.Target:IsA("BasePart") then
@@ -979,16 +993,16 @@ task.spawn(function()
                             end
                         end
                     else
-                        lplrname = game.Players.LocalPlayer.Name
                         Position.Position = FakeRig.HumanoidRootPart.CFrame * CFrame.new(MeleeOffsetX, 0, MeleeOffsetZ).Position
                     end
 				else
                     if not MeleeScript then
-					    Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
+			Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(0, FlingPartRestingOffset, 0)
                     else
                         Position.Position = FakeRig["HumanoidRootPart"].Position + Vector3.new(MeleeOffsetX, -20, MeleeOffset)
                     end
 				end
+				
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
 			end)
 		end))
