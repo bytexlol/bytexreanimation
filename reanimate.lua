@@ -952,7 +952,7 @@ task.spawn(function()
 		table.insert(Global.TableOfEvents, Mouse.KeyUp:Connect(function(k)
 			k = k:lower()
 			if k == "z" then
-			HeldZ = true
+			HeldZ = false
 			end
 		end))
 		
@@ -969,8 +969,8 @@ task.spawn(function()
 		table.insert(Global.TableOfEvents, game:GetService("RunService").Heartbeat:Connect(function()
 			local Hue = tick() % 5/5
 			pcall(function()
-				if Held or (HeldZ and CustomFling == "Cop") then
-                    if not MeleeScript and not HeldZ and CustomFling ~= "Cop" then
+				if Held then
+                    if not MeleeScript then
                         if LockBulletOnTorso == true then
                             if Mouse.Target:IsA("BasePart") then
                                 if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
@@ -1004,6 +1004,28 @@ task.spawn(function()
 				end
 				
 				Highlight.Color3 = Color3.fromHSV(Hue, 1, 1)
+				if HeldZ and CustomFling == "Cop" then
+                        if LockBulletOnTorso == true then
+                            if Mouse.Target:IsA("BasePart") then
+                                if Players:GetPlayerFromCharacter(Mouse.Target.Parent) then
+                                    if Mouse.Target.Parent.Name ~= Players.LocalPlayer.Name then
+                                        local Target = Mouse.Target.Parent:FindFirstChild("Torso") or Mouse.Target.Parent:FindFirstChild("Head") or Mouse.Target.Parent:FindFirstChildWhichIsA("BasePart")
+                                        Position.Position = Target.Position
+                                    end
+                                elseif Players:GetPlayerFromCharacter(Mouse.Target.Parent.Parent) then
+                                    if Mouse.Target.Parent.Parent.Name ~= Players.LocalPlayer.Name then
+                                        local Target = Mouse.Target.Parent.Parent:FindFirstChild("Torso") or Mouse.Target.Parent.Parent:FindFirstChild("Head") or Mouse.Target.Parent.Parent:FindFirstChildWhichIsA("BasePart")
+                                        Position.Position = Target.Position
+                                    end
+                                else
+                                    Position.Position = Mouse.Hit.Position
+                                end
+                            end
+                        else
+                            if Mouse.Target:IsA("BasePart") then
+                                Position.Position = Mouse.Hit.Position
+                            end
+                        end
 			end)
 		end))
 	end
