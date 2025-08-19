@@ -492,6 +492,18 @@ scr:button({
 })
 
 scr:button({
+    Name = "Abyss Eye",
+    Callback = function()
+        local BytexConvert_HatID = 16638328893
+        local BytexConvert_HatCFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(-70), math.rad(-90), math.rad(0))
+
+        Reanimate2(BytexConvert_HatID, BytexConvert_HatCFrame, true)
+
+        runScript2('abysseye', BytexConvert_HatID, BytexConvert_HatCFrame)
+    end,
+})
+
+scr:button({
     Name = "Neptunian V",
     Callback = function()
         local BytexConvert_HatID = 112934510372081
@@ -528,6 +540,19 @@ scr:button({
         Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true)
 
         runScript('minecraftsword')
+    end,
+})
+
+scr:button({
+    Name = "Hammer",
+    Callback = function()
+        local BytexConvert_HatID = 17582812822
+        local BytexConvert_HatCFrame = CFrame.new(0, -0.6, -1.3) * CFrame.Angles(math.rad(-90), math.rad(-90), math.rad(0))
+        local BytexConvert_HatLimbWeld = "Right Arm"
+
+        Reanimate(BytexConvert_HatID, BytexConvert_HatCFrame, BytexConvert_HatLimbWeld, true)
+
+        runScript('hammer')
     end,
 })
 
